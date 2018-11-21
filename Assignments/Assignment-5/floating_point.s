@@ -21,10 +21,10 @@ loop VDIV.F32 s3,s0,s2;//finding x/i
 	 VADD.F32 S8,S1,s7;
 	 VDIV.F32 S9,S1,S8;
 	 BX lr;
-MAIN VMOV.F32 s11,#1;//A
-	 VMOV.F32 s12,#1;//B
-	 VMOV.F32 s13,#1;//C
-	 VMOV.F32 s14,#1;//bias
+MAIN VLDR.F32 s11,=1;//A
+	 VLDR.F32 s12,=1;//B
+	 VLDR.F32 s13,=0;//C
+	 VLDR.F32 s14,=1;//bias
 
 	 VLDR.F32 s15,=2;//weight A
 	 VLDR.F32 s16,=2;//weight B
