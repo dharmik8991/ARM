@@ -5,8 +5,11 @@
 __main  function		 
 	 VMOV.F32 S7,#1;//incrementer
 	 B MAIN
+	
+
 	 
 PRIN MOV R0,R8;
+	 MOV R3,R14;
 	 BL printMsg;
 	 MOV R0,R9;
 	 BL printMsg;
@@ -35,6 +38,7 @@ PRIN MOV R0,R8;
 	 VCVT.F32.U32 s11,S11;//A
 	 VCVT.F32.U32 s12,S12;//B
 	 VCVT.F32.U32 s13,S13;//C
+	 MOV R14,R3;
 	 BX lr
 	 
 SIG	 VMOV.F32 s1,#1;//sigmoid subroutine
