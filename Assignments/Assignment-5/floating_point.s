@@ -1,5 +1,6 @@
       area     appcode, CODE, READONLY
-	 IMPORT printMsg             
+	 IMPORT printMsg   
+	 IMPORT printnewLine
 	 export __main	
 	 ENTRY 
 __main  function		 
@@ -15,6 +16,7 @@ PRIN MOV R0,R8;
 	 BL printMsg;
 	 MOV R0,R10;
 	 BL printMsg;
+	 BL printnewLine;
 	 VCVTR.U32.F32 S9,S9;
 	 VMOV.F32 R0,S9;
 	 BL printMsg;
@@ -85,6 +87,7 @@ AND_L VLDR.F32 S0,=0;//OUTPUT
 	  BL PRIN
 	  CMP R6,#1;
 	  BNE AND_L;
+	   BL printnewLine;
 	  BL RESET
 	  
 	 ;OR GATE
@@ -102,6 +105,7 @@ OR_L	 VLDR.F32 s15,=2;//weight A
 	  BL PRIN
 	 CMP R6,#1;
 	 BNE OR_L;
+	  BL printnewLine;
 	 BL RESET
 	 
 	 ;NOT GATE
@@ -120,6 +124,7 @@ NOT_L	 VLDR.F32 S0,=0;//OUTPUT
 	 ADD R8,R8,#1;
 	 CMP R8,#1;
 	 BNE NOT_L;
+	  BL printnewLine;
 	 BL RESET
 	 	 
 	;XOR GATE
@@ -195,6 +200,7 @@ XOR_L	  VLDR.F32 s15, =-2.0
 	 BL PRIN
 	 CMP R6,#1;
 	 BNE XOR_L;
+	 BL printnewLine;
 	 BL RESET
 	 
 	 ;XNOR GATE
@@ -270,6 +276,7 @@ XNOR_L VLDR.F32 s15, =2.0
 	 BL PRIN
 	 CMP R6,#1;
 	 BNE XNOR_L;
+	  BL printnewLine;
 	 BL RESET
 	 
 	 ;NAND GATE
@@ -287,6 +294,7 @@ NAND_L	 VLDR.F32 S0,=0;//OUTPUT
 	  BL PRIN
 	 CMP R6,#1;
 	 BNE NAND_L;
+	  BL printnewLine;
 	 BL RESET
 	 
 	 ;NOR GATE
