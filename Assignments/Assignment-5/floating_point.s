@@ -5,22 +5,10 @@
 	 ENTRY 
 __main  function		 
 	 VMOV.F32 S7,#1;//incrementer
+	 MOV R7,#2;
 	 B MAIN
-	
 
-	 
-PRIN MOV R0,R8;
-	 MOV R3,R14;
-	 BL printMsg;
-	 MOV R0,R9;
-	 BL printMsg;
-	 MOV R0,R10;
-	 BL printMsg;
-	 BL printnewLine;
-	 VCVTR.U32.F32 S9,S9;
-	 VMOV.F32 R0,S9;
-	 BL printMsg;
-	 ADD R8,R8,#1;
+PRIN ADD R8,R8,#1;
 	 SDIV R6,R8,R7;
 	 MUL R5,R6,R7;//FINDING MODULO
 	 SUB R8,R8,R5;
@@ -40,7 +28,7 @@ PRIN MOV R0,R8;
 	 VCVT.F32.U32 s11,S11;//A
 	 VCVT.F32.U32 s12,S12;//B
 	 VCVT.F32.U32 s13,S13;//C
-	 MOV R14,R3;
+	 
 	 BX lr
 	 
 SIG	 VMOV.F32 s1,#1;//sigmoid subroutine
@@ -65,9 +53,9 @@ RESET MOV R0,#0;
 	  MOV R9,#0;
 	  MOV R10,#0;
 	  MOV R6,#0;
-	  VLDR.F32 S11,=0;
-	  VLDR.F32 S12,=0;
-	  VLDR.F32 S13,=0;
+	  VMOV.F32 s11,R8;
+	  VMOV.F32 S12,R9;
+	  VMOV.F32 S13,R10;
 	  BX lr
 	  
 MAIN BL RESET
@@ -84,10 +72,21 @@ AND_L VLDR.F32 S0,=0;//OUTPUT
 	  VFMA.F32 S0,S13,S17;
 	  VFMA.F32 S0,S14,S18;
 	  BL SIG
-	  BL PRIN
+	  MOV R0,R8;
+	 
+	 BL printMsg;
+	 MOV R0,R9;
+	 BL printMsg;
+	 MOV R0,R10;
+	 BL printMsg;
+	 VCVTR.U32.F32 S9,S9;
+	 VMOV.F32 R0,S9;
+	 BL printMsg;
+	 BL printnewLine;
+	 BL PRIN
 	  CMP R6,#1;
 	  BNE AND_L;
-	   BL printnewLine;
+	  BL printnewLine;
 	  BL RESET
 	  
 	 ;OR GATE
@@ -102,6 +101,17 @@ OR_L	 VLDR.F32 s15,=2;//weight A
 	 VFMA.F32 S0,S13,S17;
 	 VFMA.F32 S0,S14,S18;
 	 BL SIG
+	 MOV R0,R8;
+	 
+	 BL printMsg;
+	 MOV R0,R9;
+	 BL printMsg;
+	 MOV R0,R10;
+	 BL printMsg;
+	 VCVTR.U32.F32 S9,S9;
+	 VMOV.F32 R0,S9;
+	 BL printMsg;
+	  BL printnewLine;
 	  BL PRIN
 	 CMP R6,#1;
 	 BNE OR_L;
@@ -121,8 +131,9 @@ NOT_L	 VLDR.F32 S0,=0;//OUTPUT
 	 VCVTR.U32.F32 S9,S9;
 	 VMOV.F32 R0,S9;
 	 BL printMsg;
+	 BL printnewLine;
 	 ADD R8,R8,#1;
-	 CMP R8,#1;
+	 CMP R8,#2;
 	 BNE NOT_L;
 	  BL printnewLine;
 	 BL RESET
@@ -197,6 +208,17 @@ XOR_L	  VLDR.F32 s15, =-2.0
 	 VFMA.F32 S0,S23,S18;
 	 VFMA.F32 s0,s14,s19;
 	 BL SIG
+	 MOV R0,R8;
+	 
+	 BL printMsg;
+	 MOV R0,R9;
+	 BL printMsg;
+	 MOV R0,R10;
+	 BL printMsg;
+	 VCVTR.U32.F32 S9,S9;
+	 VMOV.F32 R0,S9;
+	 BL printMsg;
+	  BL printnewLine;
 	 BL PRIN
 	 CMP R6,#1;
 	 BNE XOR_L;
@@ -273,6 +295,17 @@ XNOR_L VLDR.F32 s15, =2.0
 	 VFMA.F32 S0,S23,S18;
 	 VFMA.F32 s0,s14,s19;
 	 BL SIG
+	 MOV R0,R8;
+	 
+	 BL printMsg;
+	 MOV R0,R9;
+	 BL printMsg;
+	 MOV R0,R10;
+	 BL printMsg;
+	 VCVTR.U32.F32 S9,S9;
+	 VMOV.F32 R0,S9;
+	 BL printMsg;
+	 BL printnewLine;
 	 BL PRIN
 	 CMP R6,#1;
 	 BNE XNOR_L;
@@ -291,6 +324,17 @@ NAND_L	 VLDR.F32 S0,=0;//OUTPUT
 	 VFMA.F32 S0,S13,S17;
 	 VFMA.F32 S0,S14,S18;
 	 BL SIG
+	 MOV R0,R8;
+	 
+	 BL printMsg;
+	 MOV R0,R9;
+	 BL printMsg;
+	 MOV R0,R10;
+	 BL printMsg;
+	 VCVTR.U32.F32 S9,S9;
+	 VMOV.F32 R0,S9;
+	 BL printMsg;
+	 BL printnewLine;
 	  BL PRIN
 	 CMP R6,#1;
 	 BNE NAND_L;
@@ -309,6 +353,17 @@ NOR_L	 VLDR.F32 s15,=-2;//weight A
 	 VFMA.F32 S0,S13,S17;
 	 VFMA.F32 S0,S14,S18;
 	 BL SIG
+	 MOV R0,R8;
+	 
+	 BL printMsg;
+	 MOV R0,R9;
+	 BL printMsg;
+	 MOV R0,R10;
+	 BL printMsg;
+	 VCVTR.U32.F32 S9,S9;
+	 VMOV.F32 R0,S9;
+	 BL printMsg;
+	 BL printnewLine;
 	  BL PRIN
 	 CMP R6,#1;
 	 BNE NOR_L;
